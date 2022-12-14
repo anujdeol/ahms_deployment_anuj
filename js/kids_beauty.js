@@ -8,15 +8,13 @@ function Slides() {
     slides[i].style.display = "none";
   }
   slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}
-  slides[slideIndex-1].style.display = "block";
-  setTimeout(Slides, 2000); 
+  if (slideIndex > slides.length) {
+    slideIndex = 1;
+  }
+  slides[slideIndex - 1].style.display = "block";
+  setTimeout(Slides, 2000);
   // Change image every 1 seconds
 }
-
-
-
-
 
 function showInput() {
   if (!email.value == "") {
@@ -27,23 +25,15 @@ function showInput() {
   }
 }
 
-document.querySelector('.newspromotionsform').addEventListener(('click'),(e)=>{
-e.preventDefault()
-console.log('dsf')
-})
-window.onload = function () {
-  document.getElementById('#subs').onclick = validate1;
-};
-
-
-validate1();
-
+// window.onload = function () {
+//   document.getElementById('#subs').onclick = validate;
+// };
+// validate();
 
 function validate1() {
-  let email = document.getElementById("#email");
-  let name = document.getElementById("#name");
-  let phonenum = document.getElementById("#phnb");
-
+  let email = document.querySelector("#email");
+  let name = document.querySelector("#name");
+  let phonenum = document.querySelector("#phnb");
 
   let namepattern = /^[a-zA-Z]+ [a-zA-Z]+$/;
   let emailpattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -52,7 +42,6 @@ function validate1() {
   //   form validation
 
   if (email.value == "") {
-    console.log(email)
     email.nextElementSibling.innerHTML = "Please enter your email";
   } else if (!emailpattern.test(email.value)) {
     email.nextElementSibling.innerHTML = "Please enter your correct email ";
@@ -63,7 +52,7 @@ function validate1() {
   } else if (!namepattern.test(name.value)) {
     name.nextElementSibling.innerHTML = "Please enter your correct name ";
   }
-alert("efve");
+
   if (phonenum.value == "") {
     phonenum.nextElementSibling.innerHTML = "Please enter your phone number";
   } else if (!phonenumpattern.test(phonenum.value)) {
@@ -72,8 +61,9 @@ alert("efve");
   }
 }
 
-
-
-
-
-
+document
+  .querySelector(".newspromotionsform")
+  .addEventListener("submit", (e) => {
+    e.preventDefault();
+    validate1();
+  });
